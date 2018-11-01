@@ -1,1 +1,10 @@
-
+SHOW DATABASES;
+DROP DATABASE yxu537assign2db
+CREATE DATABASE yxu537assign2db
+USE yxu537assign2db
+GRANT USAGE ON *.* TO 'ta'@'localhost';
+DROP USER 'ta'@'localhost';
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319';
+GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost';
+FLUSH PRIVILEGES;
+SHOW TABLES;
