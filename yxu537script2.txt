@@ -43,3 +43,20 @@ SELECT * FROM agent;
 SELECT * FROM customer;
 SELECT * FROM product;
 SELECT * FROM purchase;
+
+UPDATE customer 
+SET firstname = "Wonder", lastname = "Woman"
+WHERE firstname = "Super" AND lastname = "Man";
+
+UPDATE purchase JOIN customer ON purchase.customerid = customer.customerid
+SET purchase.quantity = 5
+WHERE customer.firstname = "Sideshow";
+
+UPDATE customer JOIN agent ON customer.agentid = agent.agentid
+SET customer.city = "Boston"
+WHERE agent.firstname = "Regis";
+
+SELECT * FROM agent;
+SELECT * FROM customer;
+SELECT * FROM product;
+SELECT * FROM purchase;
