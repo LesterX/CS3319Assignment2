@@ -1,0 +1,27 @@
+Warning: Using a password on the command line interface can be insecure.
+ERROR 1064 (42000) at line 3: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE DATABASE yxu537assign2db
+
+USE yxu537assign2db
+
+GRANT USAGE ON *.* TO 'ta'' at line 3
+--------------
+SHOW DATABASES
+--------------
+
+Database
+information_schema
+NHL
+mycompany
+mysql
+performance_schema
+test
+--------------
+DROP DATABASE yxu537assign2db
+
+CREATE DATABASE yxu537assign2db
+
+USE yxu537assign2db
+
+GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
