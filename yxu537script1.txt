@@ -41,7 +41,8 @@ cost int,
 quantity int);
 
 CREATE TABLE purchase (
-customerid char(2) NOT NULL PRIMARY KEY,
-productid char(2) NOT NULL PRIMARY KEY,
+customerid char(2) NOT NULL,
+productid char(2) NOT NULL,
 FOREIGN KEY (customerid) REFERENCES customer(customerid),
-FOREIGN KEY (productid) REFERENCES product(productid));
+FOREIGN KEY (productid) REFERENCES product(productid)
+PRIMARY KEY (customerid,productid));
