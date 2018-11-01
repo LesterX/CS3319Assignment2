@@ -1,10 +1,47 @@
 SHOW DATABASES;
+
 DROP DATABASE yxu537assign2db
+
 CREATE DATABASE yxu537assign2db
+
 USE yxu537assign2db
+
 GRANT USAGE ON *.* TO 'ta'@'localhost';
+
 DROP USER 'ta'@'localhost';
+
 CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319';
+
 GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost';
+
 FLUSH PRIVILEGES;
+
 SHOW TABLES;
+
+CREATE TABLE agent (
+agentid CHAR(2) NOT NULL PRIMARY KEY,
+firstname VARCHAR(30),
+lastname VARCHAR(30),
+city VARCHAR(15),
+commisionpercentage INT);
+
+CREATE TABLE customer (
+customerid CHAR(2) NOT NULL PRIMARY KEY,
+firstname VARCHAR(30),
+lastname VARCHAR(30),
+city VARCHAR(15),
+phonenumber VARCHAR(12),
+agentid CHAR(2),
+FOREIGN KEY (agentid) REFERENCES agent(agentid));
+
+CREATE TABLE product (
+productid char(2) NOT NULL PRIMARY KEY,
+description VARCHAR(20),
+cost int,
+quantity int);
+
+CREATE TABLE purchase (
+customerid char(2) NOT NULL PRIMARY KEY,
+productid char(2) NOT NULL PRIMARY KEY,
+FOREIGN KEY (customerid) REFERENCES customer(customerid),
+FOREIGN KEY (productid) REFERENCES product(productid));
