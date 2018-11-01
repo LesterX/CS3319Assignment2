@@ -1,0 +1,8 @@
+USE yxu537assign2db;
+
+DELETE FROM product;
+
+LOAD DATA LOCAL INFILE "loaddata.txt" INTO TABLE product
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\N';
+
