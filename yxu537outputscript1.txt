@@ -1,9 +1,4 @@
 Warning: Using a password on the command line interface can be insecure.
-ERROR 1064 (42000) at line 3: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE DATABASE yxu537assign2db
-
-USE yxu537assign2db
-
-GRANT USAGE ON *.* TO 'ta'' at line 3
 --------------
 SHOW DATABASES
 --------------
@@ -15,13 +10,74 @@ mycompany
 mysql
 performance_schema
 test
+yxu537assign2db
 --------------
-DROP DATABASE yxu537assign2db
+DROP DATABASE IF EXISTS yxu537assign2db
+--------------
 
+--------------
 CREATE DATABASE yxu537assign2db
+--------------
 
-USE yxu537assign2db
-
+--------------
 GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
+--------------
+DROP USER 'ta'@'localhost'
+--------------
+
+--------------
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+--------------
+
+--------------
+GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost'
+--------------
+
+--------------
+FLUSH PRIVILEGES
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+--------------
+CREATE TABLE agent (
+agentid CHAR(2) NOT NULL PRIMARY KEY,
+firstname VARCHAR(30),
+lastname VARCHAR(30),
+city VARCHAR(15),
+commisionpercentage INT)
+--------------
+
+--------------
+CREATE TABLE customer (
+customerid CHAR(2) NOT NULL PRIMARY KEY,
+firstname VARCHAR(30),
+lastname VARCHAR(30),
+city VARCHAR(15),
+phonenumber VARCHAR(12),
+agentid CHAR(2),
+FOREIGN KEY (agentid) REFERENCES agent(agentid))
+--------------
+
+--------------
+CREATE TABLE product (
+productid char(2) NOT NULL PRIMARY KEY,
+description VARCHAR(20),
+cost DECIMAL(10,2),
+quantity int)
+--------------
+
+--------------
+CREATE TABLE purchase (
+customerid char(2) NOT NULL,
+productid char(2) NOT NULL,
+quantity int,
+FOREIGN KEY (customerid) REFERENCES customer(customerid),
+FOREIGN KEY (productid) REFERENCES product(productid),
+PRIMARY KEY (customerid,productid))
 --------------
 
