@@ -1,10 +1,10 @@
 SHOW DATABASES;
 
-DROP DATABASE yxu537assign2db
+DROP DATABASE yxu537assign2db;
 
-CREATE DATABASE yxu537assign2db
+CREATE DATABASE yxu537assign2db;
 
-USE yxu537assign2db
+USE yxu537assign2db;
 
 GRANT USAGE ON *.* TO 'ta'@'localhost';
 
