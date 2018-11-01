@@ -37,7 +37,7 @@ FOREIGN KEY (agentid) REFERENCES agent(agentid));
 CREATE TABLE product (
 productid char(2) NOT NULL PRIMARY KEY,
 description VARCHAR(20),
-cost int,
+cost DECIMAL(10,2),
 quantity int);
 
 CREATE TABLE purchase (
