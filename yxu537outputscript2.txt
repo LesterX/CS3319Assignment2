@@ -176,3 +176,72 @@ customerid	productid	quantity
 31	66	2
 31	78	4
 31	99	1
+--------------
+UPDATE customer 
+SET firstname = "Wonder", lastname = "Woman"
+WHERE firstname = "Super" AND lastname = "Man"
+--------------
+
+--------------
+UPDATE purchase JOIN customer ON purchase.customerid = customer.customerid
+SET purchase.quantity = 5
+WHERE customer.firstname = "Sideshow"
+--------------
+
+--------------
+UPDATE customer JOIN agent ON customer.agentid = agent.agentid
+SET customer.city = "Boston"
+WHERE agent.firstname = "Regis"
+--------------
+
+--------------
+SELECT * FROM agent
+--------------
+
+agentid	firstname	lastname	city	commisionpercentage
+11	Regis	Philbin	Boston	33
+12	Rosie	Cox	Ottawa	50
+22	Courtney	Cox	New York	25
+23	Yimin	Xu	Taizhou	20
+33	David	Letterman	Bedrock	100
+66	Rosie	ODonnell	Ottawa	100
+99	Hush	Grant	Springfield	16
+--------------
+SELECT * FROM customer
+--------------
+
+customerid	firstname	lastname	city	phonenumber	agentid
+10	Barney	Rubble	Boston	777-1234	11
+12	Monty	Burns	Springfield	789-0000	99
+13	Wonder	Woman	Kypto	888-1234	33
+14	Peter	Griffens	Providence	987-4567	99
+15	Fred	Flintstone	Boston	777-2345	11
+21	Homer	Simpson	Springfield	686-8956	99
+31	Sideshow	Bob	Springfield	686-5555	66
+--------------
+SELECT * FROM product
+--------------
+
+productid	description	cost	quantity
+10	Pepsi	1.50	320
+11	Socks	2.00	100
+12	Bike	150.00	200
+66	Elbow pads	14.25	120
+78	Knee Pads	12.15	70
+88	Roller Blades	75.00	89
+99	Helmet	20.00	30
+--------------
+SELECT * FROM purchase
+--------------
+
+customerid	productid	quantity
+14	66	19
+15	66	2
+15	78	2
+21	11	14
+21	66	10
+21	99	20
+31	11	5
+31	66	5
+31	78	5
+31	99	5
