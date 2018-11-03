@@ -1,0 +1,79 @@
+USE yxu537assign2db
+
+-- Query 1 --
+SELECT description FROM product;
+
+-- Query 2 --
+SELECT DISTINCT city FROM customer;
+
+-- Query 3 --
+SELECT * FROM agent ORDER BY city;
+
+-- Query 4 -- 
+SELECT firstname,lastname FROM customer WHERE city = "Springfield";
+
+-- Query 5 --
+SELECT customer.lastname FROM customer JOIN agent ON customer.agentid = agent.agentid
+WHERE agent.firstname = "Regis";
+
+-- Query 6 --
+SELECT description FROM product
+WHERE description LIKE '%pad%' OR description LIKE '%Pad%';
+
+-- Query 7 --
+SELECT lastname,description,purchase.quantity 
+FROM customer JOIN purchase ON customer.customerid = purchase.customerid
+JOIN product ON purchase.productid = product.productid
+WHERE customer.customerid IN
+(SELECT customerid FROM purchase);
+
+-- Query 8 --
+SELECT SUM(purchase.quantity) AS "Homer's Total Purchase"
+FROM purchase JOIN customer ON purchase.customerid = customer.customerid
+WHERE customer.firstname = "Homer";
+
+-- Query 9 --
+SELECT customer.firstname,customer.lastname,SUM(purchase.quantity)
+FROM customer JOIN purchase ON customer.customerid = purchase.customerid
+GROUP BY customer.customerid;
+
+-- Query 10 --
+SELECT description,quantity
+FROM product
+WHERE productid NOT IN (
+SELECT productid FROM purchase);
+
+-- Query 11 --
+SELECT description,quantity
+FROM product
+WHERE productid NOT IN (
+SELECT purchase.productid 
+FROM purchase JOIN customer ON purchase.customerid = customer.customerid
+WHERE firstname = "Fred" AND lastname = "Flintstone");
+
+-- Query 12 --
+SELECT DISTINCT customer.firstname AS "Customer First Name",customer.lastname AS "Customer Last Name",
+agent.firstname AS "Agent First Name", agent.lastname AS "Agent Last Name"
+FROM customer JOIN agent ON customer.agentid = agent.agentid
+WHERE customer.city = agent.city;
+
+-- Query 13 --
+SELECT SUM(purchase.quantity) AS "Knee Pads Purchased"
+FROM purchase JOIN product ON purchase.productid = product.productid
+WHERE description = "Knee Pads";
+
+-- Query 14 --
+SELECT description FROM product
+WHERE productid IN (
+SELECT productid FROM purchase
+GROUP BY productid
+HAVING COUNT(DISTINCT customerid) > 3);
+
+-- Query 15 --
+SELECT firstname,lastname
+FROM agent
+WHERE agentid IN (
+SELECT agentid 
+FROM customer JOIN purchase ON customer.customerid = purchase.customerid 
+JOIN product ON purchase.productid = product.productid 
+WHERE description = "Knee Pads");
