@@ -1,3 +1,5 @@
+USE yxu537assign2db
+
 -- Show Data
 SELECT * FROM agent;
 SELECT * FROM customer;
