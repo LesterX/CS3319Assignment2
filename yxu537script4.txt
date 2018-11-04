@@ -1,0 +1,32 @@
+-- Show Data
+SELECT * FROM agent;
+SELECT * FROM customer;
+SELECT * FROM product;
+SELECT * FROM purchase;
+
+-- Required View
+CREATE VIEW v AS
+SELECT firstname,lastname,description,purchase.quantity,cost,
+purchase.quantity * cost AS "Total Cost"
+FROM customer JOIN purchase ON customer.customerid = purchase.customerid
+JOIN product ON purchase.productid = product.productid
+ORDER BY lastname;
+
+-- Show data in v
+SELECT * FROM v;
+
+-- Select rows where customer spent more than 100 dollars
+SELECT * FROM v 
+WHERE cost * quantity > 100;
+
+-- Delete made up product
+DELETE FROM product
+WHERE description = 'Pepsi';
+
+-- Show data after deleting
+SELECT * FROM product;
+
+-- Delete agents from Springfield
+DELETE FROM agent
+WHERE city = 'Springfield';
+-- Delete failed because customer table is referencing agentid
